@@ -11,8 +11,6 @@ class Solution {
             h=mid-1;
         }
        }
-    //    int missingNumber=arr[h]-(h+1);
-    //    k=k-missingNumber;
        return k+(h+1);
     }
 }
