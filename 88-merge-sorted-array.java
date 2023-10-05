@@ -9,6 +9,8 @@ class Solution {
             } else {
                 nums1[l--] = nums2[l2--];
             }
+
+            
         }
     }
 }
