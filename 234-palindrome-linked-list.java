@@ -4,35 +4,46 @@ import java.util.List;
 /**
  * Definition for singly-linked list.
  * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * int val;
+ * ListNode next;
+ * ListNode() {}
+ * ListNode(int val) { this.val = val; }
+ * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
 class Solution {
-    public boolean isPalindrome(ListNode head) {
-        ListNode newNode=new ListNode();
-        List<Integer> arr=new ArrayList<>();
-        ListNode temp=head;
-        while(temp!=null)
-        {
-            arr.add(temp.val);
-            temp=temp.next;
+    public ListNode revesre(ListNode head) {
+        ListNode pre = null;
+        ListNode next = null;
+        while (head != null) {
+            next = head.next;
+            head.next = pre;
+            pre = head;
+            head = next;
         }
-        int n=arr.size();
-        int lb=0,ub=n-1;
-        while(lb<ub)
-        {
-            if(!arr.get(lb).equals(arr.get(ub)))
-            {
+        return pre;
+
+    }
+
+    public boolean isPalindrome(ListNode head) {
+        if (head == null || head.next == null)
+            return true;
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        slow.next = revesre(slow.next);
+        slow = slow.next;
+        while (slow != null) {
+            if (head.val != slow.val) {
                 return false;
             }
-            lb++;
-            ub--;
+            head = head.next;
+            slow = slow.next;
         }
         return true;
-        
+
     }
 }
