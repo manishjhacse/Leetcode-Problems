@@ -3,27 +3,24 @@ import java.util.List;
 /**
  * Definition for singly-linked list.
  * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * int val;
+ * ListNode next;
+ * ListNode() {}
+ * ListNode(int val) { this.val = val; }
+ * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
 class Solution {
-   
+
     public ListNode reverseList(ListNode head) {
-        ListNode current=head;
-        ListNode prev=null;
-        ListNode next=null;
-        while(current!=null)
-        {
-            next=current.next;
-            current.next=prev;
-            prev=current;
-            current=next;
+        ListNode prev = null;
+        ListNode next = null;
+        while (head != null) {
+            next = head.next;
+            head.next = prev;
+            prev = head;
+            head = next;
         }
-        head=prev;
-        return head;
+        return prev;
     }
 }
