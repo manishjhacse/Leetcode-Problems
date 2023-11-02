@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -9,25 +11,19 @@
  * }
  */
 class Solution {
-    public ListNode removeNthFromEnd(ListNode head, int n) {
-    ListNode temp=head;
-      if(n==0)
-      return head;
-      int size=0;
-      while(temp!=null)
-      {
-        size++;
-        temp=temp.next;
-      }
-      if(size-n==0)
-      {
-        return head.next;
-      }
-      temp=head;
-      for(int i=0;i<size-n-1;i++)
-      temp=temp.next;
-
-      temp.next=temp.next.next;
-      return head;
+  public ListNode removeNthFromEnd(ListNode head, int n) {
+    ListNode slow = head;
+    ListNode fast = head;
+    for (int i = 1; i <= n; ++i)
+      fast = fast.next;
+    if (fast == null)
+      return head.next;
+    while (fast.next != null) {
+      slow = slow.next;
+      fast = fast.next;
     }
+    slow.next = slow.next.next;
+    return head;
+
+  }
 }
