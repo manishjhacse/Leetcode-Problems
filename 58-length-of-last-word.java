@@ -1,20 +1,20 @@
 class Solution {
     public int lengthOfLastWord(String s) {
-     int count=0;
-     int last=s.length()-1;
-     for(int i=s.length()-1;i>=0;i--){
-        if(s.charAt(i)==' '){
-            last--;
-        }else{
-            break;
+        int n = s.length() - 1;
+        int count = 0;
+        boolean wordFound = false;
+        while (n >= 0) {
+            if (s.charAt(n) == ' ' && !wordFound) {
+                n--;
+            } else if (s.charAt(n) == ' ' && wordFound) {
+                break;
+            } else {
+                wordFound = true;
+                count++;
+                n--;
+            }
         }
-     }   
-      for(int i=last;i>=0;i--){
-        if(s.charAt(i)==' '){
-            break;
-        }
-        count++;
-     }  
-     return count;
+        return count;
+
     }
 }
