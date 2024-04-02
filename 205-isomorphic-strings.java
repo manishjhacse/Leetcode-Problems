@@ -1,24 +1,19 @@
-import java.util.HashMap;
-
 class Solution {
     public boolean isIsomorphic(String s, String t) {
-        HashMap<Character,Character>map=new HashMap<>();
-        for (int i = 0; i <s.length() ; i++) {
-           char original=s.charAt(i);
-           char replacement=t.charAt(i);
-           if(!map.containsKey(original)){
-                if(!map.containsValue(replacement)){
-                    map.put(original,replacement);
-                }
-                else{
-                    return false;
-                }
-           }
-           else{
-            if(map.get(original)!=replacement)
-            return false;
-           }
-            
+        int arr[] = new int[256];
+        Arrays.fill(arr, -1);
+        for (int i = 0; i < s.length(); i++) {
+            char charS = s.charAt(i);
+            char charT = t.charAt(i);
+            if (arr[charS] == -1) {
+                arr[charS] = charT;
+            }
+            if (arr[charT + 128] == -1) {
+                arr[charT + 128] = charS;
+            }
+            if (arr[charS] != charT || arr[charT + 128] != charS) {
+                return false;
+            }
         }
         return true;
     }
