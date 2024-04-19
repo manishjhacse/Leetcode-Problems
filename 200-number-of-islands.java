@@ -13,6 +13,7 @@ class Solution {
                     destroyLand(grid, i, j, visited);
                 }
             }
+            
         }
         return ans;
     }
