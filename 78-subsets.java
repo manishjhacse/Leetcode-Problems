@@ -8,12 +8,15 @@ class Solution {
         return answer;
     }
 
-    public void backtrackSubset(List<List<Integer>> answer, List<Integer> tempSet, int nums[], int start) {
-        answer.add(new ArrayList<>(tempSet));
-        for (int i = start; i < nums.length; i++) {
-            tempSet.add(nums[i]);
-            backtrackSubset(answer, tempSet, nums, i + 1);
-            tempSet.remove(tempSet.size() - 1);
+    public void backtrackSubset(List<List<Integer>> answer, List<Integer> tempSet, int nums[], int index) {
+        if (nums.length == index) {
+            answer.add(new ArrayList<>(tempSet));
+            return;
         }
+        tempSet.add(nums[index]);
+        backtrackSubset(answer, tempSet, nums, index + 1);
+        tempSet.remove(tempSet.size() - 1);
+        backtrackSubset(answer, tempSet, nums, index + 1);
+
     }
 }
