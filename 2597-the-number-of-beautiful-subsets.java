@@ -1,5 +1,3 @@
-import java.util.HashMap;
-
 class Solution {
     public int totalSubsets(int[] nums, int k, int index, HashMap<Integer, Integer> freqMap) {
         if (index == nums.length) {
