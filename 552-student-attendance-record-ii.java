@@ -7,6 +7,7 @@ class Solution {
         }
         return solve(n, 0, 0, memo);
     }
+    
 
     private int solve(int n, int consecutiveLates, int absents, int[][][] memo){
         if(absents >= 2 || consecutiveLates >= 3) return 0;
