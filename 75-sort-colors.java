@@ -8,6 +8,7 @@ class Solution {
                 nums[low] = temp;
                 low++;
                 mid++;
+                
             } else if (nums[mid] == 1) {
                 mid++;
             } else if (nums[mid] == 2) {
