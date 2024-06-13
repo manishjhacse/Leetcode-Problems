@@ -1,12 +1,12 @@
 class Solution {
-    public int minMovesToSeat(int[] seats, int[] students) {
-        Arrays.sort(seats);
-        Arrays.sort(students);
-        int n=seats.length;
-        int sum=0;
-        for(int i=0;i<n;i++){
-            sum += Math.abs(seats[i]-students[i]);
+    public int minMovesToSeat(int[] seatPositions, int[] studentPositions) {
+        Arrays.sort(seatPositions);
+        Arrays.sort(studentPositions);
+        int numberOfSeats = seatPositions.length;
+        int totalMoves = 0;
+        for (int i = 0; i < numberOfSeats; i++) {
+            totalMoves += Math.abs(seatPositions[i] - studentPositions[i]);
         }
-        return sum;
+        return totalMoves;
     }
 }
