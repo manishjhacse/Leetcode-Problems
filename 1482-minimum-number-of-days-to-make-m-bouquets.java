@@ -17,28 +17,26 @@ class Solution {
     }
 
     public int minDays(int[] bloomDay, int m, int k) {
-        int min=bloomDay[0],max=bloomDay[0];
-        if((double)bloomDay.length<(double)m*k)
-        return -1;
-        for(int i=0;i<bloomDay.length;i++){
-            if(min>bloomDay[i]){
-                min=bloomDay[i];
+        int min = bloomDay[0], max = bloomDay[0];
+        if ((double) bloomDay.length < (double) m * k)
+            return -1;
+        for (int i = 0; i < bloomDay.length; i++) {
+            if (min > bloomDay[i]) {
+                min = bloomDay[i];
             }
-            if(bloomDay[i]>max){
-                max=bloomDay[i];
+            if (bloomDay[i] > max) {
+                max = bloomDay[i];
             }
         }
-       while(min<=max)
-       {
-        int mid=min+(max-min)/2;
-        if(isPossible(bloomDay, mid, m, k)){
-            max=mid-1;
+        while (min <= max) {
+            int mid = min + (max - min) / 2;
+            if (isPossible(bloomDay, mid, m, k)) {
+                max = mid - 1;
+            } else {
+
+                min = mid + 1;
+            }
         }
-        else{
-            
-            min=mid+1;
-       }
+        return min;
     }
-    return min;
-}
 }
