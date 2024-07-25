@@ -2,7 +2,6 @@ class Solution {
     public static void mergeArray(int arr[], int l, int mid, int r) {
         int n1 = mid - l + 1;
         int n2 = r - (mid + 1) + 1;
-
         int left_subArray[] = new int[n1];
         int right_subArray[] = new int[n2];
         for (int i = 0; i < n1; i++) {
@@ -14,23 +13,16 @@ class Solution {
         int i = 0, j = 0, k = l;
         while (i < n1 && j < n2) {
             if (left_subArray[i] < right_subArray[j]) {
-                arr[k] = left_subArray[i];
-                i++;
+                arr[k++] = left_subArray[i++];
             } else {
-                arr[k] = right_subArray[j];
-                j++;
+                arr[k++] = right_subArray[j++];
             }
-            k++;
         }
         while (i < n1) {
-            arr[k] = left_subArray[i];
-            i++;
-            k++;
+            arr[k++] = left_subArray[i++];
         }
         while (j < n2) {
-            arr[k] = right_subArray[j];
-            j++;
-            k++;
+            arr[k++] = right_subArray[j++];
         }
     }
 
