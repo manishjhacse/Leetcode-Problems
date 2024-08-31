@@ -17,6 +17,7 @@ class Solution {
                     pro[u] = pro[v] * sp;
                     isChanged = true;
                 }
+                
                 j++;
             }
             if (!isChanged) {
