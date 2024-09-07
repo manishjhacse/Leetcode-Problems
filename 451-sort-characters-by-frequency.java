@@ -1,28 +1,42 @@
+class Pair implements Comparable<Pair> {
+    char ch;
+    int freq;
+
+    Pair(char ch, int freq) {
+        this.ch = ch;
+        this.freq = freq;
+    }
+
+    @Override
+    public int compareTo(Pair that) {
+        if (that.freq == this.freq) {
+            return this.ch - that.ch;
+        }
+        return that.freq - this.freq; // maxheap
+    }
+}
+
 class Solution {
     public String frequencySort(String s) {
-        HashMap<Character,Integer> map=new HashMap<>();
-        StringBuilder ans=new StringBuilder();
-        List<Character>[]arr=new ArrayList[s.length()+1];
-        for (int i = 0; i <s.length() ; i++){
-            map.put(s.charAt(i), map.getOrDefault(s.charAt(i), 0)+1);
+        HashMap<Character, Integer> map = new HashMap<>();
+        StringBuilder ans = new StringBuilder();
+        for (char ch : s.toCharArray()) {
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
         }
-        map.keySet().forEach(
-            c->{
-                if(arr[map.get(c)]==null){
-                    arr[map.get(c)]=new ArrayList<>();
-                }
-                arr[map.get(c)].add(c);
-            }
-        );
-        for(int i=arr.length-1;i>0;i--){
-            if(arr[i]!=null){
-                for(Character c:arr[i]){
-                    for(int j=0;j<i;j++){
-                        ans.append(c);
-                    }
-                }
-            }
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            pq.add(new Pair(entry.getKey(), entry.getValue()));
         }
-        return ans.toString();  
+        while (!pq.isEmpty()) {
+            Pair pair = pq.poll();
+            char ch = pair.ch;
+            int freq = pair.freq;
+            while (freq > 0) {
+                ans.append(ch);
+                freq--;
+            }
+
+        }
+        return ans.toString();
     }
 }
