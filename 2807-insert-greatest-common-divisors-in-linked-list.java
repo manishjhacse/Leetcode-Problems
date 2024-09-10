@@ -1,40 +1,39 @@
 /**
  * Definition for singly-linked list.
  * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * int val;
+ * ListNode next;
+ * ListNode() {}
+ * ListNode(int val) { this.val = val; }
+ * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
 class Solution {
-    static int gcd(int a, int b)
-    {
-        int i,j;
-        if (a < b)
-            i = a;
-        else
-            i = b;
-        for (j = i; j > 1; j--) {
-            if (a % j == 0 && b % j == 0)
-                return j;
+    static int gcd(int i, int j) {
+        int a, b;
+        if (i > j) {
+            a = i;
+            b = j;
+        } else {
+            a = j;
+            b = i;
         }
-        return 1;
+        if(b==0){
+            return a;
+        }
+        return gcd(b,a%b);
+
     }
+
     public ListNode insertGreatestCommonDivisors(ListNode head) {
-        ListNode temp=head;
-        if(head==null)
-        return head;
-        while(temp.next!=null)
-        {
-            int a=temp.val;
-            int b=temp.next.val;
-            int g=gcd(a,b);
-            ListNode newNode=new ListNode(g);
-            newNode.next=temp.next;
-            temp.next=newNode;
-            temp=temp.next.next;
+        ListNode first = head;
+        ListNode second = head.next;
+        while (second != null) {
+            int g = gcd(first.val, second.val);
+            first.next = new ListNode(g);
+            first.next.next = second;
+            first = second;
+            second = second.next;
         }
         return head;
     }
